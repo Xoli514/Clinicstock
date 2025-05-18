@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clinic Stock Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    
+  <header>
+    <h1>Clinic Stock Manager</h1>
+    <div class="user-controls">
+    <span id="user-role">Logged in as:</span>  
+    <button id="logout-btn">Logout</button> 
+    </div>    
+    </header>  
+    
+     <main>   
+        <div id="low-stock-warning" class="hidden">Warning: Some items are low in stock!</div> 
+         
+          <div class="report-container">  
+    <button id="generate-report-btn">Generate Report</button>  
+   </div>   
+         
+   
+ <section class="stock-form">
+      <h2>Add New Item</h2>
+      <form id="stock-form">
+        <label for="item-name">Item Name</label>
+        <input type="text" id="item-name" required />
+
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" required />
+
+ <label for="expiry">Expiry Date</label>
+        <input type="date" id="expiry" />
+
+        <button type="submit">Add Item</button>
+      </form>
+    </section>
+         
+
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Search items..." />
+      <button id="export-btn">Export to Excel</button>
+    </div>
+       
+       <section class="stock-table">
+      <h2>Current Stock</h2>
+
+      <table id="stock-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Expiry Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="stock-table-body"></tbody>
+      </table>
+
+    </section>
+     <div class="export section">
+  <button id="export-btn">Export CSV</button>
+</div>    
+  </main>
+
+  <footer>
+    <p>© 2025 Clinic Stock Manager - South Africa by Xoliswa Qebengu</p>
+  </footer>
+
+  <script src="app.js"></script>
+<script>
+  const user = JSON.parse(localStorage.getItem('currentUser'));
+  if (!user) {
+    window.location.href = 'login.html';
+  } else {
+    document.getElementById('user-role').textContent = `Logged in as ${user.role}`;
+  }
+
+  document.getElementById('logout-btn').addEventListener('click', () => {
+    localStorage.removeItem('currentUser');
+    window.location.href = 'login.html';
+  });
+</script>
+    
+</body>
+</html>  
+          
